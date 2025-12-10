@@ -1,0 +1,377 @@
+// Has auto-calculation for BMI, and Early Warning Scores (EWS)
+
+
+{
+  "resourceType": "Questionnaire",
+  "id": "6c822390-9d87-40da-8eb4-626d8048f8f7",
+  "url": "https://fhir.slade360.co.ke/fhir/Questionnaire/6c822390-9d87-40da-8eb4-626d8048f8f7",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/Questionnaire"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "weight",
+        "language": "text/fhirpath",
+        "expression": "%resource.item.where(linkId='29463-7').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "heightM",
+        "language": "text/fhirpath",
+        "expression": "%resource.item.where(linkId='8302-2').answer.value / 100"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "temperature",
+        "language": "text/fhirpath",
+        "expression": "%resource.item.where(linkId='8310-5').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/variable",
+      "valueExpression": {
+        "name": "spo2",
+        "language": "text/fhirpath",
+        "expression": "%resource.item.where(linkId='20564-1').answer.value"
+      }
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "http://example.org/StructureMap/ExtractPhysicalAssessment"
+    }
+  ],
+  "title": "Vitals Signs",
+  "status": "active",
+  "description": "This form is used to collect vital signs",
+  "code": [
+    {
+      "system": "http://loinc.org",
+      "code": "67795-5",
+      "display": "Vital signs, weight, height, head circumference and oximetry panel HITSP"
+    }
+  ],
+  "item": [
+    {
+      "type": "integer",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "cm",
+            "display": "centimeter"
+          }
+        }
+      ],
+      "linkId": "8302-2",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "8302-2",
+          "display": "Body Height"
+        }
+      ],
+      "text": "Height"
+    },
+    {
+      "type": "integer",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "kg",
+            "display": "kilogram"
+          }
+        }
+      ],
+      "linkId": "29463-7",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "29463-7",
+          "display": "Body Weight"
+        }
+      ],
+      "text": "Weight"
+    },
+    {
+      "type": "decimal",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "kg/m2",
+            "display": "kilogram per square meter"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+          "valueExpression": {
+            "description": "BMI in kg/m2, 1 decimal place",
+            "language": "text/fhirpath",
+            "expression": "iif(%heightM.empty() or %weight.empty(), null, (%weight / (%heightM.power(2))).round(1))"
+          }
+        }
+      ],
+      "linkId": "39156-5",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "39156-5",
+          "display": "Body mass index (BMI) [Ratio]"
+        }
+      ],
+      "text": "BMI",
+      "readOnly": true,
+      "item": [
+        {
+          "type": "string",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "description": "Classify BMI as underweight, normal, overweight, or obese",
+                "language": "text/fhirpath",
+                "expression": "iif(%heightM.empty() or %weight.empty(), null, iif((%weight / (%heightM.power(2))) < 18.5, 'Underweight', iif((%weight / (%heightM.power(2))) < 25, 'Normal', iif((%weight / (%heightM.power(2))) < 30, 'Overweight', 'Obese'))))"
+              }
+            }
+          ],
+          "linkId": "39156-5_status",
+          "text": "BMI status",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "type": "integer",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "/min",
+            "display": "per minute"
+          }
+        }
+      ],
+      "linkId": "8889-8",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "8889-8",
+          "display": "Heart rate by Pulse oximetry"
+        }
+      ],
+      "text": "Pulse Rate"
+    },
+    {
+      "type": "group",
+      "linkId": "55284-4",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "55284-4",
+          "display": "Blood pressure systolic and diastolic"
+        }
+      ],
+      "text": "Blood Pressure(mmHg)",
+      "readOnly": true,
+      "item": [
+        {
+          "type": "integer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mm[Hg]",
+                "display": "millimeter of mercury"
+              }
+            }
+          ],
+          "linkId": "8480-6",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6",
+              "display": "Systolic blood pressure"
+            }
+          ],
+          "text": "Systolic Blood Pressure"
+        },
+        {
+          "type": "integer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mm[Hg]",
+                "display": "millimeter of mercury"
+              }
+            }
+          ],
+          "linkId": "8462-4",
+          "code": [
+            {
+              "system": "http://loinc.org",
+              "code": "8462-4",
+              "display": "Diastolic blood pressure"
+            }
+          ],
+          "text": "Diastolic Blood Pressure"
+        }
+      ]
+    },
+    {
+      "type": "integer",
+      "linkId": "8310-5",
+      "text": "Temperature (Celsius)",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "8310-5",
+          "display": "Body Temperature"
+        }
+      ],
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "Cel",
+            "display": "degree Celsius"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxValue",
+          "valueInteger": 40
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "valueInteger": 40
+        }
+      ],
+      "item": [
+        {
+          "type": "string",
+          "linkId": "8310-5_status",
+          "text": "Temperature status",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "description": "Classify temperature as low, normal, or high with message, hide if > 40",
+                "language": "text/fhirpath",
+                "expression": "iif(%temperature.empty() or %temperature > 40, null, iif(%temperature < 35, 'Low. Normal range 35.0 to 37.5 °C', iif(%temperature > 37.5, 'High. Normal range 35.0 to 37.5 °C', 'Normal')))"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "integer",
+      "linkId": "20564-1",
+      "text": "Oxygen Saturation",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      ],
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "%",
+            "display": "%"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxValue",
+          "valueInteger": 100
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
+          "valueInteger": 100
+        }
+      ],
+      "item": [
+        {
+          "type": "string",
+          "linkId": "20564-1_status",
+          "text": "Oxygen saturation status",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "description": "Classify oxygen saturation, hide if > 100",
+                "language": "text/fhirpath",
+                "expression": "iif(%spo2.empty() or %spo2 > 100, null, iif(%spo2 < 90, 'Low. Expected 95 to 100 %. Recheck probe position and retake measurement.', iif(%spo2 >= 95, 'Normal', 'Borderline')))"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "integer",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "/min",
+            "display": "per minute"
+          }
+        }
+      ],
+      "linkId": "9279-1",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "9279-1",
+          "display": "Respiratory rate"
+        }
+      ],
+      "text": "Respiration Rate"
+    },
+    {
+      "type": "integer",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+          "valueCoding": {
+            "system": "http://unitsofmeasure.org",
+            "code": "mm",
+            "display": "millimeter"
+          }
+        }
+      ],
+      "linkId": "9847-5",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "9847-5",
+          "display": "Circumference"
+        }
+      ],
+      "text": "Mid-Upper Arm Circumference"
+    }
+  ]
+}
