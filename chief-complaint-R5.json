@@ -1,0 +1,50 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "92c028d9-4056-4f25-8b3a-d3b5440a9505",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.slade360.co.ke/fhir/StructureMap/ExtractVitalSigns"
+    }
+  ],
+  "title": "Chief Complaint",
+  "status": "active",
+  "description": "This form is used to collect patient's reported complaints",
+  "code": [
+    {
+      "system": "http://loinc.org",
+      "code": "10154-3",
+      "display": "Chief complaint Narrative - Reported"
+    }
+  ],
+  "item": [
+    {
+      "type": "text",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "text-box",
+                "display": "Text Box"
+              }
+            ]
+          }
+        }
+      ],
+      "linkId": "10154-3",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "10154-3",
+          "display": "Chief complaint Narrative - Reported"
+        }
+      ],
+      "text": "Chief Complaint",
+      "required": true,
+      "readOnly": false
+    }
+  ]
+}

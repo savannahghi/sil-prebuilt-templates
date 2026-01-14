@@ -45,7 +45,7 @@
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "http://example.org/StructureMap/ExtractPhysicalAssessment"
+      "valueCanonical": "https://fhir.slade360.co.ke/fhir/StructureMap/ExtractVitalSigns"
     }
   ],
   "title": "Vitals Signs",
