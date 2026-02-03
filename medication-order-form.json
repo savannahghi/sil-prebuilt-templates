@@ -1,0 +1,292 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "ab4b3f10-5174-4125-917a-9f95f42c1ad2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/5.0/StructureDefinition/Questionnaire"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.slade360.co.ke/fhir/StructureMap/ExtractMedicationRequest"
+    },
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+      "valueUrl": "https://fhir.staging.slade360edi.com/fhir"
+    }
+  ],
+  "url": "https://fhir.staging.slade360edi.com/fhir/Questionnaire/ab4b3f10-5174-4125-917a-9f95f42c1ad2",
+  "title": "Medication Order Form",
+  "status": "active",
+  "description": "This form is used to order for medication(s)",
+  "purpose": "Doctor/Pharmacy use",
+  "approvalDate": "2026-02-03",
+  "lastReviewDate": "2026-02-03",
+  "item": [
+    {
+      "item": [
+        {
+          "type": "integer",
+          "linkId": "dose",
+          "text": "Dose",
+          "required": true,
+          "repeats": false,
+          "readOnly": false
+        },
+        {
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "drop-down",
+                    "display": "Drop down"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "dosage-unit",
+          "text": "Dosage Unit",
+          "required": true,
+          "readOnly": false,
+          "answerConstraint": "optionsOnly",
+          "answerValueSet": "dosage-unit"
+        },
+        {
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "drop-down",
+                    "display": "Drop down"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "formulation",
+          "text": "Formulation",
+          "required": true,
+          "repeats": false,
+          "readOnly": false,
+          "answerConstraint": "optionsOnly",
+          "answerValueSet": "medication-form"
+        },
+        {
+          "type": "coding",
+          "linkId": "route",
+          "text": "Route",
+          "repeats": false,
+          "answerConstraint": "optionsOnly",
+          "answerValueSet": "route-of-administration"
+        },
+        {
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "drop-down",
+                    "display": "Drop down"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "frequency",
+          "text": "Frequency",
+          "required": true,
+          "readOnly": false,
+          "answerConstraint": "optionsOnly",
+          "answerValueSet": "dosage-frequency"
+        },
+        {
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "drop-down",
+                    "display": "Drop down"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "when-to-take",
+          "text": "When to take",
+          "required": true,
+          "readOnly": false,
+          "answerValueSet": "timing-of-event"
+        },
+        {
+          "type": "integer",
+          "linkId": "duration",
+          "text": "Duration",
+          "required": true,
+          "readOnly": false,
+          "answerConstraint": "optionsOnly"
+        },
+        {
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "drop-down",
+                    "display": "Drop down"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "duration-uom",
+          "text": "Duration UOM",
+          "required": true,
+          "readOnly": false,
+          "answerConstraint": "optionsOnly",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "h",
+                "display": "h - hour"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "d",
+                "display": "d - day"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "wk",
+                "display": "wk - week"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mo",
+                "display": "mo - month"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "a - year"
+              }
+            }
+          ]
+        },
+        {
+          "type": "date",
+          "linkId": "start-date",
+          "text": "Start Date",
+          "required": true,
+          "readOnly": false
+        },
+        {
+          "type": "date",
+          "linkId": "end-date",
+          "text": "End Date",
+          "required": true,
+          "readOnly": false
+        },
+        {
+          "type": "integer",
+          "linkId": "refills",
+          "text": "Refills",
+          "required": false,
+          "repeats": false,
+          "readOnly": false
+        },
+        {
+          "type": "boolean",
+          "linkId": "substitutable",
+          "text": "Substitutable?",
+          "required": true,
+          "repeats": false,
+          "readOnly": false,
+          "initial": [
+            {
+              "valueBoolean": false
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "linkId": "dosage-instructions",
+          "text": "Dosage Instructions",
+          "required": false,
+          "repeats": false,
+          "readOnly": false
+        },
+        {
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "priority",
+          "text": "Priority",
+          "required": true,
+          "repeats": false,
+          "readOnly": false,
+          "answerValueSet": "http://hl7.org/fhir/ValueSet/request-priority"
+        },
+        {
+          "type": "text",
+          "linkId": "additional-instructions",
+          "text": "Additional Instructions",
+          "required": false,
+          "repeats": false,
+          "readOnly": false
+        }
+      ],
+      "type": "group",
+      "linkId": "prescription-form",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "57833-6",
+          "display": "Prescription for medication"
+        }
+      ],
+      "text": "Prescription",
+      "readOnly": true
+    }
+  ]
+}
