@@ -1,0 +1,2921 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "ExtractVitalSigns",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: StructureMap ExtractVitalSigns</b></p><a name=\"ExtractVitalSigns\"> </a><a name=\"hcExtractVitalSigns\"> </a><pre class=\"fml\">\r\n<span style=\"color: #cc00cc\">/// <b>url</b> = </span><span style=\"color: blue\">'https://fhir.slade360.co.ke/fhir/StructureMap/ExtractVitalSigns'</span>\r\n<span style=\"color: #cc00cc\">/// <b>name</b> = </span><span style=\"color: blue\">'ExtractVitalSigns'</span>\r\n<span style=\"color: #cc00cc\">/// <b>status</b> = </span><span style=\"color: blue\">'draft'</span>\r\n\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R5/questionnaireresponse.html\" title=\"QuestionnaireResponse\">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style=\"color: navy\">&quot; </span><b>alias </b>QR <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R5/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style=\"color: navy\">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R5/observation.html\" title=\"Observation\">http://hl7.org/fhir/StructureDefinition/Observation</a><span style=\"color: navy\">&quot; </span><b>alias </b>Observation <b>as </b><b>target</b>\r\n\r\n<b>group </b>ExtractVitalSigns<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">qr</span><span style=\"color: navy\"> : </span>QR, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  qr<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'transaction'</span> <i>&quot;setBundleType&quot;</i><span style=\"color: navy\">;</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itH</span><b> where </b>(linkId = '8302-2')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itH.answer first<b> as </b><span style=\"color: maroon\">aH</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aH<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eH</span><span style=\"color: navy\">, </span> eH.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oH</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oH</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eH</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oH</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eH</span><span style=\"color: navy\">)</span> <i>&quot;heightBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oH.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryH&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oH.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8302-2'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Body Height'</span><span style=\"color: navy\">)</span> <i>&quot;codeH&quot;</i><span style=\"color: navy\">;</span>\r\n        aH.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oH.valueQuantity<b> as </b><span style=\"color: maroon\">vH</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vH.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vH.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vH.code = <span style=\"color: blue\">'cm'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vH.unit = <span style=\"color: blue\">'centimeter'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valH&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;heightObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;heightAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;heightRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Height</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itW</span><b> where </b>(linkId = '29463-7')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itW.answer first<b> as </b><span style=\"color: maroon\">aW</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aW<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eW</span><span style=\"color: navy\">, </span> eW.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oW</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oW</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eW</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oW</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eW</span><span style=\"color: navy\">)</span> <i>&quot;weightBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oW.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryW&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oW.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'29463-7'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Body Weight'</span><span style=\"color: navy\">)</span> <i>&quot;codeW&quot;</i><span style=\"color: navy\">;</span>\r\n        aW.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oW.valueQuantity<b> as </b><span style=\"color: maroon\">vW</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vW.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vW.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vW.code = <span style=\"color: blue\">'kg'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vW.unit = <span style=\"color: blue\">'kilogram'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valW&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;weightObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;weightAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;weightRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Weight</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itBmi</span><b> where </b>(linkId = '39156-5')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itBmi.answer first<b> as </b><span style=\"color: maroon\">aBmi</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aBmi<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eBmi</span><span style=\"color: navy\">, </span> eBmi.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oBmi</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oBmi</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eBmi</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oBmi</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eBmi</span><span style=\"color: navy\">)</span> <i>&quot;bmiBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oBmi.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryBmi&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oBmi.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'39156-5'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Body mass index (BMI) [Ratio]'</span><span style=\"color: navy\">)</span> <i>&quot;codeBmi&quot;</i><span style=\"color: navy\">;</span>\r\n        aBmi.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oBmi.valueQuantity<b> as </b><span style=\"color: maroon\">vBmi</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vBmi.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vBmi.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vBmi.code = <span style=\"color: blue\">'kg/m2'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vBmi.unit = <span style=\"color: blue\">'kilogram per square meter'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valBmi&quot;</i><span style=\"color: navy\">;</span>\r\n        itBmi.item<b> as </b><span style=\"color: maroon\">bmiStatusItem</span><b> where </b>(linkId = '39156-5_status')<b> then</b><span style=\"color: navy\"> {\r\n</span>          bmiStatusItem.answer first<b> as </b><span style=\"color: maroon\">bmiStatusAns</span><span style=\"color: navy\"><b> -&gt; </b></span>oBmi.interpretation<b> as </b><span style=\"color: maroon\">iBmi</span><b> then</b><span style=\"color: navy\"> {\r\n</span>            bmiStatusAns.value<b> as </b><span style=\"color: maroon\">statusText</span><span style=\"color: navy\"><b> -&gt; </b></span>iBmi.text = <span style=\"color: maroon\">statusText</span> <i>&quot;interpBmi&quot;</i><span style=\"color: navy\">;</span>\r\n          <span style=\"color: navy\">}</span> <i>&quot;setInterpBmi&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;findBmiStatus&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Interpretation 39156-5_status</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;bmiObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;bmiAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;bmiRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">BMI</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itP</span><b> where </b>(linkId = '8889-8')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itP.answer first<b> as </b><span style=\"color: maroon\">aP</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aP<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eP</span><span style=\"color: navy\">, </span> eP.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oP</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oP</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eP</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oP</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eP</span><span style=\"color: navy\">)</span> <i>&quot;pulseBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oP.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryP&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oP.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8889-8'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Heart rate by Pulse oximetry'</span><span style=\"color: navy\">)</span> <i>&quot;codeP&quot;</i><span style=\"color: navy\">;</span>\r\n        aP.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oP.valueQuantity<b> as </b><span style=\"color: maroon\">vP</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vP.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vP.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vP.code = <span style=\"color: blue\">'/min'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vP.unit = <span style=\"color: blue\">'per minute'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valP&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;pulseObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;pulseAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;pulseRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Pulse</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itBP</span><b> where </b>(linkId = '55284-4')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itBP.answer first<b> as </b><span style=\"color: maroon\">aPanel</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aPanel<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eBP</span><span style=\"color: navy\">, </span> eBP.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oBP</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oBP</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eBP</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oBP</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eBP</span><span style=\"color: navy\">)</span> <i>&quot;bpBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oBP.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryBP&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oBP.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'55284-4'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Blood pressure systolic and diastolic'</span><span style=\"color: navy\">)</span> <i>&quot;codeBP&quot;</i><span style=\"color: navy\">;</span>\r\n        itBP.item<b> as </b><span style=\"color: maroon\">itSys</span><b> where </b>(linkId = '8480-6')<b> then</b><span style=\"color: navy\"> {\r\n</span>          itSys.answer first<b> as </b><span style=\"color: maroon\">aSys</span><span style=\"color: navy\"><b> -&gt; </b></span>oBP.component<b> as </b><span style=\"color: maroon\">cSys</span><b> then</b><span style=\"color: navy\"> {\r\n</span>            aSys<span style=\"color: navy\"><b> -&gt; </b></span>cSys.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8480-6'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Systolic blood pressure'</span><span style=\"color: navy\">)</span> <i>&quot;bpSysCode&quot;</i><span style=\"color: navy\">;</span>\r\n            aSys.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>cSys.valueQuantity<b> as </b><span style=\"color: maroon\">vSys</span><b> then</b><span style=\"color: navy\"> {\r\n</span>              hv<span style=\"color: navy\"><b> -&gt; </b></span>vSys.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n              qr<span style=\"color: navy\"><b> -&gt; </b></span>vSys.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n              qr<span style=\"color: navy\"><b> -&gt; </b></span>vSys.code = <span style=\"color: blue\">'mm[Hg]'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n              qr<span style=\"color: navy\"><b> -&gt; </b></span>vSys.unit = <span style=\"color: blue\">'millimeter of mercury'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n            <span style=\"color: navy\">}</span> <i>&quot;bpSysVal&quot;</i><span style=\"color: navy\">;</span>\r\n          <span style=\"color: navy\">}</span> <i>&quot;bpSysComponent&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;bpSysRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Systolic 8480-6</span>\r\n        itBP.item<b> as </b><span style=\"color: maroon\">itDia</span><b> where </b>(linkId = '8462-4')<b> then</b><span style=\"color: navy\"> {\r\n</span>          itDia.answer first<b> as </b><span style=\"color: maroon\">aDia</span><span style=\"color: navy\"><b> -&gt; </b></span>oBP.component<b> as </b><span style=\"color: maroon\">cDia</span><b> then</b><span style=\"color: navy\"> {\r\n</span>            aDia<span style=\"color: navy\"><b> -&gt; </b></span>cDia.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8462-4'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Diastolic blood pressure'</span><span style=\"color: navy\">)</span> <i>&quot;bpDiaCode&quot;</i><span style=\"color: navy\">;</span>\r\n            aDia.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>cDia.valueQuantity<b> as </b><span style=\"color: maroon\">vDia</span><b> then</b><span style=\"color: navy\"> {\r\n</span>              hv<span style=\"color: navy\"><b> -&gt; </b></span>vDia.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n              qr<span style=\"color: navy\"><b> -&gt; </b></span>vDia.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n              qr<span style=\"color: navy\"><b> -&gt; </b></span>vDia.code = <span style=\"color: blue\">'mm[Hg]'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n              qr<span style=\"color: navy\"><b> -&gt; </b></span>vDia.unit = <span style=\"color: blue\">'millimeter of mercury'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n            <span style=\"color: navy\">}</span> <i>&quot;bpDiaVal&quot;</i><span style=\"color: navy\">;</span>\r\n          <span style=\"color: navy\">}</span> <i>&quot;bpDiaComponent&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;bpDiaRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Diastolic 8462-4</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;bpObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;bpAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;bpRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Blood Pressure</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itT</span><b> where </b>(linkId = '8310-5')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itT.answer first<b> as </b><span style=\"color: maroon\">aT</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aT<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eT</span><span style=\"color: navy\">, </span> eT.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oT</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oT</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eT</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oT</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eT</span><span style=\"color: navy\">)</span> <i>&quot;tempBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oT.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryT&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oT.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8310-5'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Body Temperature'</span><span style=\"color: navy\">)</span> <i>&quot;codeT&quot;</i><span style=\"color: navy\">;</span>\r\n        aT.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oT.valueQuantity<b> as </b><span style=\"color: maroon\">vT</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vT.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vT.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vT.code = <span style=\"color: blue\">'Cel'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vT.unit = <span style=\"color: blue\">'degree Celsius'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valT&quot;</i><span style=\"color: navy\">;</span>\r\n        itT.item<b> as </b><span style=\"color: maroon\">tStatusItem</span><b> where </b>(linkId = '8310-5_status')<b> then</b><span style=\"color: navy\"> {\r\n</span>          tStatusItem.answer first<b> as </b><span style=\"color: maroon\">tStatusAns</span><span style=\"color: navy\"><b> -&gt; </b></span>oT.interpretation<b> as </b><span style=\"color: maroon\">iT</span><b> then</b><span style=\"color: navy\"> {\r\n</span>            tStatusAns.value<b> as </b><span style=\"color: maroon\">statusText</span><span style=\"color: navy\"><b> -&gt; </b></span>iT.text = <span style=\"color: maroon\">statusText</span> <i>&quot;interpT&quot;</i><span style=\"color: navy\">;</span>\r\n          <span style=\"color: navy\">}</span> <i>&quot;setInterpT&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;findTStatus&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Interpretation 8310-5_status</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;tempObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;tempAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;tempRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Temperature</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itO2</span><b> where </b>(linkId = '20564-1')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itO2.answer first<b> as </b><span style=\"color: maroon\">aO2</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aO2<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eO2</span><span style=\"color: navy\">, </span> eO2.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oO2</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oO2</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eO2</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oO2</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eO2</span><span style=\"color: navy\">)</span> <i>&quot;spo2Base&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oO2.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryO2&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oO2.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'20564-1'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Oxygen saturation in Blood'</span><span style=\"color: navy\">)</span> <i>&quot;codeO2&quot;</i><span style=\"color: navy\">;</span>\r\n        aO2.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oO2.valueQuantity<b> as </b><span style=\"color: maroon\">vO2</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vO2.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vO2.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vO2.code = <span style=\"color: blue\">'%'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vO2.unit = <span style=\"color: blue\">'%'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valO2&quot;</i><span style=\"color: navy\">;</span>\r\n        itO2.item<b> as </b><span style=\"color: maroon\">o2StatusItem</span><b> where </b>(linkId = '20564-1_status')<b> then</b><span style=\"color: navy\"> {\r\n</span>          o2StatusItem.answer first<b> as </b><span style=\"color: maroon\">o2StatusAns</span><span style=\"color: navy\"><b> -&gt; </b></span>oO2.interpretation<b> as </b><span style=\"color: maroon\">iO2</span><b> then</b><span style=\"color: navy\"> {\r\n</span>            o2StatusAns.value<b> as </b><span style=\"color: maroon\">statusText</span><span style=\"color: navy\"><b> -&gt; </b></span>iO2.text = <span style=\"color: maroon\">statusText</span> <i>&quot;interpO2&quot;</i><span style=\"color: navy\">;</span>\r\n          <span style=\"color: navy\">}</span> <i>&quot;setInterpO2&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;findO2Status&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Interpretation of SpO2 20564-1_status</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;spo2Obs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;spo2Ans&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;spo2Rule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">SpO2</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itRR</span><b> where </b>(linkId = '9279-1')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itRR.answer first<b> as </b><span style=\"color: maroon\">aRR</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aRR<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eRR</span><span style=\"color: navy\">, </span> eRR.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oRR</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oRR</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eRR</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oRR</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eRR</span><span style=\"color: navy\">)</span> <i>&quot;rrBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oRR.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryRR&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oRR.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'9279-1'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Respiratory rate'</span><span style=\"color: navy\">)</span> <i>&quot;codeRR&quot;</i><span style=\"color: navy\">;</span>\r\n        aRR.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oRR.valueQuantity<b> as </b><span style=\"color: maroon\">vRR</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vRR.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vRR.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vRR.code = <span style=\"color: blue\">'/min'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vRR.unit = <span style=\"color: blue\">'per minute'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valRR&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;rrObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;rrAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;rrRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Respiratory rate</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itMuac</span><b> where </b>(linkId = '9847-5')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itMuac.answer first<b> as </b><span style=\"color: maroon\">aMuac</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aMuac<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eMuac</span><span style=\"color: navy\">, </span> eMuac.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oMuac</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oMuac</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eMuac</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oMuac</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eMuac</span><span style=\"color: navy\">)</span> <i>&quot;muacBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oMuac.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'vital-signs'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Vital Signs'</span><span style=\"color: navy\">)</span> <i>&quot;categoryMuac&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oMuac.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'9847-5'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Circumference'</span><span style=\"color: navy\">)</span> <i>&quot;codeMuac&quot;</i><span style=\"color: navy\">;</span>\r\n        aMuac.value<b> as </b><span style=\"color: maroon\">hv</span><span style=\"color: navy\"><b> -&gt; </b></span>oMuac.valueQuantity<b> as </b><span style=\"color: maroon\">vMuac</span><b> then</b><span style=\"color: navy\"> {\r\n</span>          hv<span style=\"color: navy\"><b> -&gt; </b></span>vMuac.value = <span style=\"color: maroon\">hv</span> <i>&quot;setVal&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vMuac.system = <span style=\"color: blue\">'http://unitsofmeasure.org'</span> <i>&quot;setSys&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vMuac.code = <span style=\"color: blue\">'mm'</span> <i>&quot;setCode&quot;</i><span style=\"color: navy\">;</span>\r\n          qr<span style=\"color: navy\"><b> -&gt; </b></span>vMuac.unit = <span style=\"color: blue\">'millimeter'</span> <i>&quot;setUnit&quot;</i><span style=\"color: navy\">;</span>\r\n        <span style=\"color: navy\">}</span> <i>&quot;valMuac&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;muacObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;muacAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;muacRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">MUAC</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">itCC</span><b> where </b>(linkId = '10154-3')<b> then</b><span style=\"color: navy\"> {\r\n</span>    itCC.answer first<b> as </b><span style=\"color: maroon\">aCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aCC<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">, </span> eCC.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eCC</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">)</span> <i>&quot;chiefComplaintBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'social-history'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Social History'</span><span style=\"color: navy\">)</span> <i>&quot;chiefComplaintCategory&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Override category to social-history</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'10154-3'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Chief complaint Narrative - Reported'</span><span style=\"color: navy\">)</span> <i>&quot;chiefComplaintCode&quot;</i><span style=\"color: navy\">;</span>\r\n        aCC.value<b> as </b><span style=\"color: maroon\">textVal</span><span style=\"color: navy\"><b> -&gt; </b></span>oCC.valueString = <span style=\"color: maroon\">textVal</span> <i>&quot;chiefComplaintValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;chiefComplaintObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;chiefComplaintAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;chiefComplaintRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Chief Complaint</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">hpiCC</span><b> where </b>(linkId = '8684-3')<b> then</b><span style=\"color: navy\"> {\r\n</span>    hpiCC.answer first<b> as </b><span style=\"color: maroon\">aCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aCC<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">, </span> eCC.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eCC</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">)</span> <i>&quot;historyOfPIBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'social-history'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Social History'</span><span style=\"color: navy\">)</span> <i>&quot;historyOfPICategory&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Override category to social-history</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8684-3'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'History of Present illness'</span><span style=\"color: navy\">)</span> <i>&quot;historyOfPICode&quot;</i><span style=\"color: navy\">;</span>\r\n        aCC.value<b> as </b><span style=\"color: maroon\">textVal</span><span style=\"color: navy\"><b> -&gt; </b></span>oCC.valueString = <span style=\"color: maroon\">textVal</span> <i>&quot;historyOfPIValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;historyOfPIObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;historyOfPIAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;historyOfPIRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">History of Presenting Illness</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">hPastCC</span><b> where </b>(linkId = '11349-8')<b> then</b><span style=\"color: navy\"> {\r\n</span>    hPastCC.answer first<b> as </b><span style=\"color: maroon\">aCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aCC<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">, </span> eCC.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eCC</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">)</span> <i>&quot;historyOfPastIBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'social-history'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Social History'</span><span style=\"color: navy\">)</span> <i>&quot;historyOfPastICategory&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Override category to social-history</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'11349-8'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'History of Past illness'</span><span style=\"color: navy\">)</span> <i>&quot;historyOfPastICode&quot;</i><span style=\"color: navy\">;</span>\r\n        aCC.value<b> as </b><span style=\"color: maroon\">textVal</span><span style=\"color: navy\"><b> -&gt; </b></span>oCC.valueString = <span style=\"color: maroon\">textVal</span> <i>&quot;historyOfPastIValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;historyOfPastIObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;historyOfPastIAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;historyOfPastIRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">History of Past Illness / Past Medical History</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">hFH</span><b> where </b>(linkId = '8670-2')<b> then</b><span style=\"color: navy\"> {\r\n</span>    hFH.answer first<b> as </b><span style=\"color: maroon\">aCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aCC<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">, </span> eCC.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eCC</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">)</span> <i>&quot;familyFHIBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'social-history'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Social History'</span><span style=\"color: navy\">)</span> <i>&quot;familyHICategory&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'8670-2'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'History of family member diseases'</span><span style=\"color: navy\">)</span> <i>&quot;familyHICode&quot;</i><span style=\"color: navy\">;</span>\r\n        aCC.value<b> as </b><span style=\"color: maroon\">textVal</span><span style=\"color: navy\"><b> -&gt; </b></span>oCC.valueString = <span style=\"color: maroon\">textVal</span> <i>&quot;familyHIValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;familyHIObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;familyHIAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;familyHIRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Family History</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">hSH</span><b> where </b>(linkId = '29762-2')<b> then</b><span style=\"color: navy\"> {\r\n</span>    hSH.answer first<b> as </b><span style=\"color: maroon\">aCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aCC<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">, </span> eCC.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eCC</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">)</span> <i>&quot;socialHistoryIBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'social-history'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Social History'</span><span style=\"color: navy\">)</span> <i>&quot;socialHistoryCategory&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'29762-2'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Social history note'</span><span style=\"color: navy\">)</span> <i>&quot;socialHistoryCode&quot;</i><span style=\"color: navy\">;</span>\r\n        aCC.value<b> as </b><span style=\"color: maroon\">textVal</span><span style=\"color: navy\"><b> -&gt; </b></span>oCC.valueString = <span style=\"color: maroon\">textVal</span> <i>&quot;socialHistoryIValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;socialHistoryIObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;socialHistoryIAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;socialHistoryIRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Social History</span>\r\n  qr.item<b> as </b><span style=\"color: maroon\">medicationH</span><b> where </b>(linkId = '10160-0')<b> then</b><span style=\"color: navy\"> {\r\n</span>    medicationH.answer first<b> as </b><span style=\"color: maroon\">aCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      aCC<span style=\"color: navy\"><b> -&gt; </b></span> bundle.entry<b> as </b><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">, </span> eCC.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Observation'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">oCC</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        qr<span style=\"color: navy\"><b> -&gt; </b></span> <span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span> <span style=\"color: maroon\">eCC</span><b> then </b>BuildBaseObs<span style=\"color: navy\">(</span><span style=\"color: maroon\">qr</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">oCC</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">eCC</span><span style=\"color: navy\">)</span> <i>&quot;medicationHIBase&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.category = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'therapy'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'Therapy'</span><span style=\"color: navy\">)</span> <i>&quot;medicationHCategory&quot;</i><span style=\"color: navy\">;</span>\r\n        qr<span style=\"color: navy\"><b> -&gt; </b></span>oCC.code = <b>cc</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'http://loinc.org'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'10160-0'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'History of Medication use Narrative'</span><span style=\"color: navy\">)</span> <i>&quot;medicationHistoryCode&quot;</i><span style=\"color: navy\">;</span>\r\n        aCC.value<b> as </b><span style=\"color: maroon\">textVal</span><span style=\"color: navy\"><b> -&gt; </b></span>oCC.valueString = <span style=\"color: maroon\">textVal</span> <i>&quot;medicationHistoryIValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;medicationHistoryIObs&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;medicationHistoryIAns&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;medicationHistoryIRule&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Medication History</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>BuildBaseObs<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">qr</span><span style=\"color: navy\"> : </span>QR, <b>target</b> <span style=\"color: maroon\">obs</span><span style=\"color: navy\"> : </span>Observation, <b>target</b> <span style=\"color: maroon\">entry</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  qr<span style=\"color: navy\"><b> -&gt; </b></span>obs.status = <span style=\"color: blue\">'final'</span> <i>&quot;status&quot;</i><span style=\"color: navy\">;</span>\r\n  qr.subject<b> as </b><span style=\"color: maroon\">s</span><span style=\"color: navy\"><b> -&gt; </b></span>obs.subject = <span style=\"color: maroon\">s</span><span style=\"color: navy\">;</span>\r\n  qr.encounter<b> as </b><span style=\"color: maroon\">e</span><span style=\"color: navy\"><b> -&gt; </b></span>obs.encounter = <span style=\"color: maroon\">e</span><span style=\"color: navy\">;</span>\r\n  qr.authored<b> as </b><span style=\"color: maroon\">t</span><span style=\"color: navy\"><b> -&gt; </b></span>obs.effectiveDateTime = <span style=\"color: maroon\">t</span> <i>&quot;effective&quot;</i><span style=\"color: navy\">;</span>\r\n  qr<span style=\"color: navy\"><b> -&gt; </b></span>obs.id = <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> then </b>SetObservationFullUrl<span style=\"color: navy\">(</span><span style=\"color: maroon\">obs</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">entry</span><span style=\"color: navy\">)</span> <i>&quot;setObsIdAndFullUrl&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Observation id and fullUrl</span>\r\n  qr<span style=\"color: navy\"><b> -&gt; </b></span>entry.request<b> as </b><span style=\"color: maroon\">request</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    qr<span style=\"color: navy\"><b> -&gt; </b></span>request.method = <span style=\"color: blue\">'POST'</span> <i>&quot;reqMethod&quot;</i><span style=\"color: navy\">;</span>\r\n    qr<span style=\"color: navy\"><b> -&gt; </b></span>request.url = <span style=\"color: blue\">'Observation'</span> <i>&quot;reqUrl&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;entryRequest&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Bundle.entry.request (transaction POST Observation)</span>\r\n  qr<span style=\"color: navy\"><b> -&gt; </b></span>obs.derivedFrom = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Reference'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">newRef</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    qr.id<b> as </b><span style=\"color: maroon\">qid</span><span style=\"color: navy\"><b> -&gt; </b></span>newRef.reference = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'QuestionnaireResponse/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">qid</span><span style=\"color: navy\">)</span> <i>&quot;setQRRef&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;linkQR&quot;</i><span style=\"color: navy\">;</span> <span style=\"color: navy\">// </span><span style=\"color: green\">Link Observation -&gt; QuestionnaireResponse</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>SetObservationFullUrl<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">obs</span><span style=\"color: navy\"> : </span>Observation, <b>target</b> <span style=\"color: maroon\">entry</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  obs.id<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>entry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'https://fhir.slade360.co.ke/fhir/Observation/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">id</span><span style=\"color: navy\">)</span> <i>&quot;assignFullUrl&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span></pre></div>"
+  },
+  "url" : "https://fhir.slade360.co.ke/fhir/StructureMap/ExtractVitalSigns",
+  "version" : "0.1.0",
+  "name" : "ExtractVitalSigns",
+  "status" : "draft",
+  "date" : "2026-03-16T16:54:15+03:00",
+  "publisher" : "Kathurima Kimathi",
+  "contact" : [{
+    "name" : "Kathurima Kimathi",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.linkedin.com/in/kathurima-kimathi/"
+    },
+    {
+      "system" : "email",
+      "value" : "kathurimakimathi415@gmail.com"
+    }]
+  },
+  {
+    "name" : "Oscar John",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "oscarjohnotieno@gmail.com",
+      "use" : "work"
+    }]
+  },
+  {
+    "name" : "Kennedy Omondi",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "kennankole@gmail.com",
+      "use" : "work"
+    }]
+  }],
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+    "mode" : "source",
+    "alias" : "QR"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Observation",
+    "mode" : "target",
+    "alias" : "Observation"
+  }],
+  "group" : [{
+    "name" : "ExtractVitalSigns",
+    "input" : [{
+      "name" : "qr",
+      "type" : "QR",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "setBundleType",
+      "source" : [{
+        "context" : "qr"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "element" : "type",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "transaction"
+        }]
+      }]
+    },
+    {
+      "name" : "heightRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itH",
+        "condition" : "(linkId = '8302-2')"
+      }],
+      "rule" : [{
+        "name" : "heightAns",
+        "source" : [{
+          "context" : "itH",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aH"
+        }],
+        "rule" : [{
+          "name" : "heightObs",
+          "source" : [{
+            "context" : "aH"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eH"
+          },
+          {
+            "context" : "eH",
+            "element" : "resource",
+            "variable" : "oH",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "heightBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oH"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eH"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oH"
+              },
+              {
+                "valueId" : "eH"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryH",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oH",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeH",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oH",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "8302-2"
+              },
+              {
+                "valueString" : "Body Height"
+              }]
+            }]
+          },
+          {
+            "name" : "valH",
+            "source" : [{
+              "context" : "aH",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oH",
+              "element" : "valueQuantity",
+              "variable" : "vH"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vH",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vH",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vH",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "cm"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vH",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "centimeter"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Height"
+    },
+    {
+      "name" : "weightRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itW",
+        "condition" : "(linkId = '29463-7')"
+      }],
+      "rule" : [{
+        "name" : "weightAns",
+        "source" : [{
+          "context" : "itW",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aW"
+        }],
+        "rule" : [{
+          "name" : "weightObs",
+          "source" : [{
+            "context" : "aW"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eW"
+          },
+          {
+            "context" : "eW",
+            "element" : "resource",
+            "variable" : "oW",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "weightBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oW"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eW"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oW"
+              },
+              {
+                "valueId" : "eW"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryW",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oW",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeW",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oW",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "29463-7"
+              },
+              {
+                "valueString" : "Body Weight"
+              }]
+            }]
+          },
+          {
+            "name" : "valW",
+            "source" : [{
+              "context" : "aW",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oW",
+              "element" : "valueQuantity",
+              "variable" : "vW"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vW",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vW",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vW",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "kg"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vW",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "kilogram"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Weight"
+    },
+    {
+      "name" : "bmiRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itBmi",
+        "condition" : "(linkId = '39156-5')"
+      }],
+      "rule" : [{
+        "name" : "bmiAns",
+        "source" : [{
+          "context" : "itBmi",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aBmi"
+        }],
+        "rule" : [{
+          "name" : "bmiObs",
+          "source" : [{
+            "context" : "aBmi"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eBmi"
+          },
+          {
+            "context" : "eBmi",
+            "element" : "resource",
+            "variable" : "oBmi",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "bmiBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oBmi"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eBmi"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oBmi"
+              },
+              {
+                "valueId" : "eBmi"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryBmi",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oBmi",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeBmi",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oBmi",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "39156-5"
+              },
+              {
+                "valueString" : "Body mass index (BMI) [Ratio]"
+              }]
+            }]
+          },
+          {
+            "name" : "valBmi",
+            "source" : [{
+              "context" : "aBmi",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oBmi",
+              "element" : "valueQuantity",
+              "variable" : "vBmi"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vBmi",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vBmi",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vBmi",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "kg/m2"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vBmi",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "kilogram per square meter"
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "findBmiStatus",
+            "source" : [{
+              "context" : "itBmi",
+              "element" : "item",
+              "variable" : "bmiStatusItem",
+              "condition" : "(linkId = '39156-5_status')"
+            }],
+            "rule" : [{
+              "name" : "setInterpBmi",
+              "source" : [{
+                "context" : "bmiStatusItem",
+                "element" : "answer",
+                "listMode" : "first",
+                "variable" : "bmiStatusAns"
+              }],
+              "target" : [{
+                "context" : "oBmi",
+                "element" : "interpretation",
+                "variable" : "iBmi"
+              }],
+              "rule" : [{
+                "name" : "interpBmi",
+                "source" : [{
+                  "context" : "bmiStatusAns",
+                  "element" : "value",
+                  "variable" : "statusText"
+                }],
+                "target" : [{
+                  "context" : "iBmi",
+                  "element" : "text",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueId" : "statusText"
+                  }]
+                }]
+              }]
+            }],
+            "documentation" : "Interpretation 39156-5_status"
+          }]
+        }]
+      }],
+      "documentation" : "BMI"
+    },
+    {
+      "name" : "pulseRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itP",
+        "condition" : "(linkId = '8889-8')"
+      }],
+      "rule" : [{
+        "name" : "pulseAns",
+        "source" : [{
+          "context" : "itP",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aP"
+        }],
+        "rule" : [{
+          "name" : "pulseObs",
+          "source" : [{
+            "context" : "aP"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eP"
+          },
+          {
+            "context" : "eP",
+            "element" : "resource",
+            "variable" : "oP",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "pulseBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oP"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eP"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oP"
+              },
+              {
+                "valueId" : "eP"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryP",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oP",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeP",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oP",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "8889-8"
+              },
+              {
+                "valueString" : "Heart rate by Pulse oximetry"
+              }]
+            }]
+          },
+          {
+            "name" : "valP",
+            "source" : [{
+              "context" : "aP",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oP",
+              "element" : "valueQuantity",
+              "variable" : "vP"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vP",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vP",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vP",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "/min"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vP",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "per minute"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Pulse"
+    },
+    {
+      "name" : "bpRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itBP",
+        "condition" : "(linkId = '55284-4')"
+      }],
+      "rule" : [{
+        "name" : "bpAns",
+        "source" : [{
+          "context" : "itBP",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aPanel"
+        }],
+        "rule" : [{
+          "name" : "bpObs",
+          "source" : [{
+            "context" : "aPanel"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eBP"
+          },
+          {
+            "context" : "eBP",
+            "element" : "resource",
+            "variable" : "oBP",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "bpBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oBP"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eBP"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oBP"
+              },
+              {
+                "valueId" : "eBP"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryBP",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oBP",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeBP",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oBP",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "55284-4"
+              },
+              {
+                "valueString" : "Blood pressure systolic and diastolic"
+              }]
+            }]
+          },
+          {
+            "name" : "bpSysRule",
+            "source" : [{
+              "context" : "itBP",
+              "element" : "item",
+              "variable" : "itSys",
+              "condition" : "(linkId = '8480-6')"
+            }],
+            "rule" : [{
+              "name" : "bpSysComponent",
+              "source" : [{
+                "context" : "itSys",
+                "element" : "answer",
+                "listMode" : "first",
+                "variable" : "aSys"
+              }],
+              "target" : [{
+                "context" : "oBP",
+                "element" : "component",
+                "variable" : "cSys"
+              }],
+              "rule" : [{
+                "name" : "bpSysCode",
+                "source" : [{
+                  "context" : "aSys"
+                }],
+                "target" : [{
+                  "context" : "cSys",
+                  "element" : "code",
+                  "transform" : "cc",
+                  "parameter" : [{
+                    "valueString" : "http://loinc.org"
+                  },
+                  {
+                    "valueString" : "8480-6"
+                  },
+                  {
+                    "valueString" : "Systolic blood pressure"
+                  }]
+                }]
+              },
+              {
+                "name" : "bpSysVal",
+                "source" : [{
+                  "context" : "aSys",
+                  "element" : "value",
+                  "variable" : "hv"
+                }],
+                "target" : [{
+                  "context" : "cSys",
+                  "element" : "valueQuantity",
+                  "variable" : "vSys"
+                }],
+                "rule" : [{
+                  "name" : "setVal",
+                  "source" : [{
+                    "context" : "hv"
+                  }],
+                  "target" : [{
+                    "context" : "vSys",
+                    "element" : "value",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueId" : "hv"
+                    }]
+                  }]
+                },
+                {
+                  "name" : "setSys",
+                  "source" : [{
+                    "context" : "qr"
+                  }],
+                  "target" : [{
+                    "context" : "vSys",
+                    "element" : "system",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueString" : "http://unitsofmeasure.org"
+                    }]
+                  }]
+                },
+                {
+                  "name" : "setCode",
+                  "source" : [{
+                    "context" : "qr"
+                  }],
+                  "target" : [{
+                    "context" : "vSys",
+                    "element" : "code",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueString" : "mm[Hg]"
+                    }]
+                  }]
+                },
+                {
+                  "name" : "setUnit",
+                  "source" : [{
+                    "context" : "qr"
+                  }],
+                  "target" : [{
+                    "context" : "vSys",
+                    "element" : "unit",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueString" : "millimeter of mercury"
+                    }]
+                  }]
+                }]
+              }]
+            }],
+            "documentation" : "Systolic 8480-6"
+          },
+          {
+            "name" : "bpDiaRule",
+            "source" : [{
+              "context" : "itBP",
+              "element" : "item",
+              "variable" : "itDia",
+              "condition" : "(linkId = '8462-4')"
+            }],
+            "rule" : [{
+              "name" : "bpDiaComponent",
+              "source" : [{
+                "context" : "itDia",
+                "element" : "answer",
+                "listMode" : "first",
+                "variable" : "aDia"
+              }],
+              "target" : [{
+                "context" : "oBP",
+                "element" : "component",
+                "variable" : "cDia"
+              }],
+              "rule" : [{
+                "name" : "bpDiaCode",
+                "source" : [{
+                  "context" : "aDia"
+                }],
+                "target" : [{
+                  "context" : "cDia",
+                  "element" : "code",
+                  "transform" : "cc",
+                  "parameter" : [{
+                    "valueString" : "http://loinc.org"
+                  },
+                  {
+                    "valueString" : "8462-4"
+                  },
+                  {
+                    "valueString" : "Diastolic blood pressure"
+                  }]
+                }]
+              },
+              {
+                "name" : "bpDiaVal",
+                "source" : [{
+                  "context" : "aDia",
+                  "element" : "value",
+                  "variable" : "hv"
+                }],
+                "target" : [{
+                  "context" : "cDia",
+                  "element" : "valueQuantity",
+                  "variable" : "vDia"
+                }],
+                "rule" : [{
+                  "name" : "setVal",
+                  "source" : [{
+                    "context" : "hv"
+                  }],
+                  "target" : [{
+                    "context" : "vDia",
+                    "element" : "value",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueId" : "hv"
+                    }]
+                  }]
+                },
+                {
+                  "name" : "setSys",
+                  "source" : [{
+                    "context" : "qr"
+                  }],
+                  "target" : [{
+                    "context" : "vDia",
+                    "element" : "system",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueString" : "http://unitsofmeasure.org"
+                    }]
+                  }]
+                },
+                {
+                  "name" : "setCode",
+                  "source" : [{
+                    "context" : "qr"
+                  }],
+                  "target" : [{
+                    "context" : "vDia",
+                    "element" : "code",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueString" : "mm[Hg]"
+                    }]
+                  }]
+                },
+                {
+                  "name" : "setUnit",
+                  "source" : [{
+                    "context" : "qr"
+                  }],
+                  "target" : [{
+                    "context" : "vDia",
+                    "element" : "unit",
+                    "transform" : "copy",
+                    "parameter" : [{
+                      "valueString" : "millimeter of mercury"
+                    }]
+                  }]
+                }]
+              }]
+            }],
+            "documentation" : "Diastolic 8462-4"
+          }]
+        }]
+      }],
+      "documentation" : "Blood Pressure"
+    },
+    {
+      "name" : "tempRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itT",
+        "condition" : "(linkId = '8310-5')"
+      }],
+      "rule" : [{
+        "name" : "tempAns",
+        "source" : [{
+          "context" : "itT",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aT"
+        }],
+        "rule" : [{
+          "name" : "tempObs",
+          "source" : [{
+            "context" : "aT"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eT"
+          },
+          {
+            "context" : "eT",
+            "element" : "resource",
+            "variable" : "oT",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "tempBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oT"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eT"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oT"
+              },
+              {
+                "valueId" : "eT"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryT",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oT",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeT",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oT",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "8310-5"
+              },
+              {
+                "valueString" : "Body Temperature"
+              }]
+            }]
+          },
+          {
+            "name" : "valT",
+            "source" : [{
+              "context" : "aT",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oT",
+              "element" : "valueQuantity",
+              "variable" : "vT"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vT",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vT",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vT",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "Cel"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vT",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "degree Celsius"
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "findTStatus",
+            "source" : [{
+              "context" : "itT",
+              "element" : "item",
+              "variable" : "tStatusItem",
+              "condition" : "(linkId = '8310-5_status')"
+            }],
+            "rule" : [{
+              "name" : "setInterpT",
+              "source" : [{
+                "context" : "tStatusItem",
+                "element" : "answer",
+                "listMode" : "first",
+                "variable" : "tStatusAns"
+              }],
+              "target" : [{
+                "context" : "oT",
+                "element" : "interpretation",
+                "variable" : "iT"
+              }],
+              "rule" : [{
+                "name" : "interpT",
+                "source" : [{
+                  "context" : "tStatusAns",
+                  "element" : "value",
+                  "variable" : "statusText"
+                }],
+                "target" : [{
+                  "context" : "iT",
+                  "element" : "text",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueId" : "statusText"
+                  }]
+                }]
+              }]
+            }],
+            "documentation" : "Interpretation 8310-5_status"
+          }]
+        }]
+      }],
+      "documentation" : "Temperature"
+    },
+    {
+      "name" : "spo2Rule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itO2",
+        "condition" : "(linkId = '20564-1')"
+      }],
+      "rule" : [{
+        "name" : "spo2Ans",
+        "source" : [{
+          "context" : "itO2",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aO2"
+        }],
+        "rule" : [{
+          "name" : "spo2Obs",
+          "source" : [{
+            "context" : "aO2"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eO2"
+          },
+          {
+            "context" : "eO2",
+            "element" : "resource",
+            "variable" : "oO2",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "spo2Base",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oO2"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eO2"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oO2"
+              },
+              {
+                "valueId" : "eO2"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryO2",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oO2",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeO2",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oO2",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "20564-1"
+              },
+              {
+                "valueString" : "Oxygen saturation in Blood"
+              }]
+            }]
+          },
+          {
+            "name" : "valO2",
+            "source" : [{
+              "context" : "aO2",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oO2",
+              "element" : "valueQuantity",
+              "variable" : "vO2"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vO2",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vO2",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vO2",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "%"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vO2",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "%"
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "findO2Status",
+            "source" : [{
+              "context" : "itO2",
+              "element" : "item",
+              "variable" : "o2StatusItem",
+              "condition" : "(linkId = '20564-1_status')"
+            }],
+            "rule" : [{
+              "name" : "setInterpO2",
+              "source" : [{
+                "context" : "o2StatusItem",
+                "element" : "answer",
+                "listMode" : "first",
+                "variable" : "o2StatusAns"
+              }],
+              "target" : [{
+                "context" : "oO2",
+                "element" : "interpretation",
+                "variable" : "iO2"
+              }],
+              "rule" : [{
+                "name" : "interpO2",
+                "source" : [{
+                  "context" : "o2StatusAns",
+                  "element" : "value",
+                  "variable" : "statusText"
+                }],
+                "target" : [{
+                  "context" : "iO2",
+                  "element" : "text",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueId" : "statusText"
+                  }]
+                }]
+              }]
+            }],
+            "documentation" : "Interpretation of SpO2 20564-1_status"
+          }]
+        }]
+      }],
+      "documentation" : "SpO2"
+    },
+    {
+      "name" : "rrRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itRR",
+        "condition" : "(linkId = '9279-1')"
+      }],
+      "rule" : [{
+        "name" : "rrAns",
+        "source" : [{
+          "context" : "itRR",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aRR"
+        }],
+        "rule" : [{
+          "name" : "rrObs",
+          "source" : [{
+            "context" : "aRR"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eRR"
+          },
+          {
+            "context" : "eRR",
+            "element" : "resource",
+            "variable" : "oRR",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "rrBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oRR"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eRR"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oRR"
+              },
+              {
+                "valueId" : "eRR"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryRR",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oRR",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeRR",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oRR",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "9279-1"
+              },
+              {
+                "valueString" : "Respiratory rate"
+              }]
+            }]
+          },
+          {
+            "name" : "valRR",
+            "source" : [{
+              "context" : "aRR",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oRR",
+              "element" : "valueQuantity",
+              "variable" : "vRR"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vRR",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vRR",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vRR",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "/min"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vRR",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "per minute"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Respiratory rate"
+    },
+    {
+      "name" : "muacRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itMuac",
+        "condition" : "(linkId = '9847-5')"
+      }],
+      "rule" : [{
+        "name" : "muacAns",
+        "source" : [{
+          "context" : "itMuac",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aMuac"
+        }],
+        "rule" : [{
+          "name" : "muacObs",
+          "source" : [{
+            "context" : "aMuac"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eMuac"
+          },
+          {
+            "context" : "eMuac",
+            "element" : "resource",
+            "variable" : "oMuac",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "muacBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oMuac"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eMuac"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oMuac"
+              },
+              {
+                "valueId" : "eMuac"
+              }]
+            }]
+          },
+          {
+            "name" : "categoryMuac",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oMuac",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "vital-signs"
+              },
+              {
+                "valueString" : "Vital Signs"
+              }]
+            }]
+          },
+          {
+            "name" : "codeMuac",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oMuac",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "9847-5"
+              },
+              {
+                "valueString" : "Circumference"
+              }]
+            }]
+          },
+          {
+            "name" : "valMuac",
+            "source" : [{
+              "context" : "aMuac",
+              "element" : "value",
+              "variable" : "hv"
+            }],
+            "target" : [{
+              "context" : "oMuac",
+              "element" : "valueQuantity",
+              "variable" : "vMuac"
+            }],
+            "rule" : [{
+              "name" : "setVal",
+              "source" : [{
+                "context" : "hv"
+              }],
+              "target" : [{
+                "context" : "vMuac",
+                "element" : "value",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "hv"
+                }]
+              }]
+            },
+            {
+              "name" : "setSys",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vMuac",
+                "element" : "system",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "http://unitsofmeasure.org"
+                }]
+              }]
+            },
+            {
+              "name" : "setCode",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vMuac",
+                "element" : "code",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "mm"
+                }]
+              }]
+            },
+            {
+              "name" : "setUnit",
+              "source" : [{
+                "context" : "qr"
+              }],
+              "target" : [{
+                "context" : "vMuac",
+                "element" : "unit",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueString" : "millimeter"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "MUAC"
+    },
+    {
+      "name" : "chiefComplaintRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "itCC",
+        "condition" : "(linkId = '10154-3')"
+      }],
+      "rule" : [{
+        "name" : "chiefComplaintAns",
+        "source" : [{
+          "context" : "itCC",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aCC"
+        }],
+        "rule" : [{
+          "name" : "chiefComplaintObs",
+          "source" : [{
+            "context" : "aCC"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eCC"
+          },
+          {
+            "context" : "eCC",
+            "element" : "resource",
+            "variable" : "oCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "chiefComplaintBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oCC"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eCC"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oCC"
+              },
+              {
+                "valueId" : "eCC"
+              }]
+            }]
+          },
+          {
+            "name" : "chiefComplaintCategory",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "social-history"
+              },
+              {
+                "valueString" : "Social History"
+              }]
+            }],
+            "documentation" : "Override category to social-history"
+          },
+          {
+            "name" : "chiefComplaintCode",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "10154-3"
+              },
+              {
+                "valueString" : "Chief complaint Narrative - Reported"
+              }]
+            }]
+          },
+          {
+            "name" : "chiefComplaintValue",
+            "source" : [{
+              "context" : "aCC",
+              "element" : "value",
+              "variable" : "textVal"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "valueString",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "textVal"
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Chief Complaint"
+    },
+    {
+      "name" : "historyOfPIRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "hpiCC",
+        "condition" : "(linkId = '8684-3')"
+      }],
+      "rule" : [{
+        "name" : "historyOfPIAns",
+        "source" : [{
+          "context" : "hpiCC",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aCC"
+        }],
+        "rule" : [{
+          "name" : "historyOfPIObs",
+          "source" : [{
+            "context" : "aCC"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eCC"
+          },
+          {
+            "context" : "eCC",
+            "element" : "resource",
+            "variable" : "oCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "historyOfPIBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oCC"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eCC"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oCC"
+              },
+              {
+                "valueId" : "eCC"
+              }]
+            }]
+          },
+          {
+            "name" : "historyOfPICategory",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "social-history"
+              },
+              {
+                "valueString" : "Social History"
+              }]
+            }],
+            "documentation" : "Override category to social-history"
+          },
+          {
+            "name" : "historyOfPICode",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "8684-3"
+              },
+              {
+                "valueString" : "History of Present illness"
+              }]
+            }]
+          },
+          {
+            "name" : "historyOfPIValue",
+            "source" : [{
+              "context" : "aCC",
+              "element" : "value",
+              "variable" : "textVal"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "valueString",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "textVal"
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "History of Presenting Illness"
+    },
+    {
+      "name" : "historyOfPastIRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "hPastCC",
+        "condition" : "(linkId = '11349-8')"
+      }],
+      "rule" : [{
+        "name" : "historyOfPastIAns",
+        "source" : [{
+          "context" : "hPastCC",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aCC"
+        }],
+        "rule" : [{
+          "name" : "historyOfPastIObs",
+          "source" : [{
+            "context" : "aCC"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eCC"
+          },
+          {
+            "context" : "eCC",
+            "element" : "resource",
+            "variable" : "oCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "historyOfPastIBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oCC"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eCC"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oCC"
+              },
+              {
+                "valueId" : "eCC"
+              }]
+            }]
+          },
+          {
+            "name" : "historyOfPastICategory",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "social-history"
+              },
+              {
+                "valueString" : "Social History"
+              }]
+            }],
+            "documentation" : "Override category to social-history"
+          },
+          {
+            "name" : "historyOfPastICode",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "11349-8"
+              },
+              {
+                "valueString" : "History of Past illness"
+              }]
+            }]
+          },
+          {
+            "name" : "historyOfPastIValue",
+            "source" : [{
+              "context" : "aCC",
+              "element" : "value",
+              "variable" : "textVal"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "valueString",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "textVal"
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "History of Past Illness / Past Medical History"
+    },
+    {
+      "name" : "familyHIRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "hFH",
+        "condition" : "(linkId = '8670-2')"
+      }],
+      "rule" : [{
+        "name" : "familyHIAns",
+        "source" : [{
+          "context" : "hFH",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aCC"
+        }],
+        "rule" : [{
+          "name" : "familyHIObs",
+          "source" : [{
+            "context" : "aCC"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eCC"
+          },
+          {
+            "context" : "eCC",
+            "element" : "resource",
+            "variable" : "oCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "familyFHIBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oCC"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eCC"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oCC"
+              },
+              {
+                "valueId" : "eCC"
+              }]
+            }]
+          },
+          {
+            "name" : "familyHICategory",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "social-history"
+              },
+              {
+                "valueString" : "Social History"
+              }]
+            }]
+          },
+          {
+            "name" : "familyHICode",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "8670-2"
+              },
+              {
+                "valueString" : "History of family member diseases"
+              }]
+            }]
+          },
+          {
+            "name" : "familyHIValue",
+            "source" : [{
+              "context" : "aCC",
+              "element" : "value",
+              "variable" : "textVal"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "valueString",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "textVal"
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Family History"
+    },
+    {
+      "name" : "socialHistoryIRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "hSH",
+        "condition" : "(linkId = '29762-2')"
+      }],
+      "rule" : [{
+        "name" : "socialHistoryIAns",
+        "source" : [{
+          "context" : "hSH",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aCC"
+        }],
+        "rule" : [{
+          "name" : "socialHistoryIObs",
+          "source" : [{
+            "context" : "aCC"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eCC"
+          },
+          {
+            "context" : "eCC",
+            "element" : "resource",
+            "variable" : "oCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "socialHistoryIBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oCC"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eCC"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oCC"
+              },
+              {
+                "valueId" : "eCC"
+              }]
+            }]
+          },
+          {
+            "name" : "socialHistoryCategory",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "social-history"
+              },
+              {
+                "valueString" : "Social History"
+              }]
+            }]
+          },
+          {
+            "name" : "socialHistoryCode",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "29762-2"
+              },
+              {
+                "valueString" : "Social history note"
+              }]
+            }]
+          },
+          {
+            "name" : "socialHistoryIValue",
+            "source" : [{
+              "context" : "aCC",
+              "element" : "value",
+              "variable" : "textVal"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "valueString",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "textVal"
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Social History"
+    },
+    {
+      "name" : "medicationHistoryIRule",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "medicationH",
+        "condition" : "(linkId = '10160-0')"
+      }],
+      "rule" : [{
+        "name" : "medicationHistoryIAns",
+        "source" : [{
+          "context" : "medicationH",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "aCC"
+        }],
+        "rule" : [{
+          "name" : "medicationHistoryIObs",
+          "source" : [{
+            "context" : "aCC"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "element" : "entry",
+            "variable" : "eCC"
+          },
+          {
+            "context" : "eCC",
+            "element" : "resource",
+            "variable" : "oCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Observation"
+            }]
+          }],
+          "rule" : [{
+            "name" : "medicationHIBase",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "oCC"
+              }]
+            },
+            {
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "eCC"
+              }]
+            }],
+            "dependent" : [{
+              "name" : "BuildBaseObs",
+              "parameter" : [{
+                "valueId" : "qr"
+              },
+              {
+                "valueId" : "oCC"
+              },
+              {
+                "valueId" : "eCC"
+              }]
+            }]
+          },
+          {
+            "name" : "medicationHCategory",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "category",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/observation-category"
+              },
+              {
+                "valueString" : "therapy"
+              },
+              {
+                "valueString" : "Therapy"
+              }]
+            }]
+          },
+          {
+            "name" : "medicationHistoryCode",
+            "source" : [{
+              "context" : "qr"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "code",
+              "transform" : "cc",
+              "parameter" : [{
+                "valueString" : "http://loinc.org"
+              },
+              {
+                "valueString" : "10160-0"
+              },
+              {
+                "valueString" : "History of Medication use Narrative"
+              }]
+            }]
+          },
+          {
+            "name" : "medicationHistoryIValue",
+            "source" : [{
+              "context" : "aCC",
+              "element" : "value",
+              "variable" : "textVal"
+            }],
+            "target" : [{
+              "context" : "oCC",
+              "element" : "valueString",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "textVal"
+              }]
+            }]
+          }]
+        }]
+      }],
+      "documentation" : "Medication History"
+    }]
+  },
+  {
+    "name" : "BuildBaseObs",
+    "input" : [{
+      "name" : "qr",
+      "type" : "QR",
+      "mode" : "source"
+    },
+    {
+      "name" : "obs",
+      "type" : "Observation",
+      "mode" : "target"
+    },
+    {
+      "name" : "entry",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "status",
+      "source" : [{
+        "context" : "qr"
+      }],
+      "target" : [{
+        "context" : "obs",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "final"
+        }]
+      }]
+    },
+    {
+      "name" : "subject",
+      "source" : [{
+        "context" : "qr",
+        "element" : "subject",
+        "variable" : "s"
+      }],
+      "target" : [{
+        "context" : "obs",
+        "element" : "subject",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "s"
+        }]
+      }]
+    },
+    {
+      "name" : "encounter",
+      "source" : [{
+        "context" : "qr",
+        "element" : "encounter",
+        "variable" : "e"
+      }],
+      "target" : [{
+        "context" : "obs",
+        "element" : "encounter",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "e"
+        }]
+      }]
+    },
+    {
+      "name" : "effective",
+      "source" : [{
+        "context" : "qr",
+        "element" : "authored",
+        "variable" : "t"
+      }],
+      "target" : [{
+        "context" : "obs",
+        "element" : "effectiveDateTime",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "t"
+        }]
+      }]
+    },
+    {
+      "name" : "setObsIdAndFullUrl",
+      "source" : [{
+        "context" : "qr"
+      }],
+      "target" : [{
+        "context" : "obs",
+        "element" : "id",
+        "transform" : "uuid"
+      }],
+      "dependent" : [{
+        "name" : "SetObservationFullUrl",
+        "parameter" : [{
+          "valueId" : "obs"
+        },
+        {
+          "valueId" : "entry"
+        }]
+      }],
+      "documentation" : "Observation id and fullUrl"
+    },
+    {
+      "name" : "entryRequest",
+      "source" : [{
+        "context" : "qr"
+      }],
+      "target" : [{
+        "context" : "entry",
+        "element" : "request",
+        "variable" : "request"
+      }],
+      "rule" : [{
+        "name" : "reqMethod",
+        "source" : [{
+          "context" : "qr"
+        }],
+        "target" : [{
+          "context" : "request",
+          "element" : "method",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "POST"
+          }]
+        }]
+      },
+      {
+        "name" : "reqUrl",
+        "source" : [{
+          "context" : "qr"
+        }],
+        "target" : [{
+          "context" : "request",
+          "element" : "url",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "Observation"
+          }]
+        }]
+      }],
+      "documentation" : "Bundle.entry.request (transaction POST Observation)"
+    },
+    {
+      "name" : "linkQR",
+      "source" : [{
+        "context" : "qr"
+      }],
+      "target" : [{
+        "context" : "obs",
+        "element" : "derivedFrom",
+        "variable" : "newRef",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      }],
+      "rule" : [{
+        "name" : "setQRRef",
+        "source" : [{
+          "context" : "qr",
+          "element" : "id",
+          "variable" : "qid"
+        }],
+        "target" : [{
+          "context" : "newRef",
+          "element" : "reference",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "QuestionnaireResponse/"
+          },
+          {
+            "valueId" : "qid"
+          }]
+        }]
+      }],
+      "documentation" : "Link Observation -> QuestionnaireResponse"
+    }]
+  },
+  {
+    "name" : "SetObservationFullUrl",
+    "input" : [{
+      "name" : "obs",
+      "type" : "Observation",
+      "mode" : "source"
+    },
+    {
+      "name" : "entry",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "assignFullUrl",
+      "source" : [{
+        "context" : "obs",
+        "element" : "id",
+        "variable" : "id"
+      }],
+      "target" : [{
+        "context" : "entry",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "https://fhir.slade360.co.ke/fhir/Observation/"
+        },
+        {
+          "valueId" : "id"
+        }]
+      }]
+    }]
+  }]
+}

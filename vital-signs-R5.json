@@ -1,16 +1,19 @@
-// Has auto-calculation for BMI, and Early Warning Scores (EWS)
-
-
 {
   "resourceType": "Questionnaire",
   "id": "6c822390-9d87-40da-8eb4-626d8048f8f7",
-  "url": "https://fhir.slade360.co.ke/fhir/Questionnaire/6c822390-9d87-40da-8eb4-626d8048f8f7",
   "meta": {
+    "versionId": "4",
+    "lastUpdated": "2026-02-13T07:26:28.524+00:00",
+    "source": "#O2u1hWMjWG5PETIL",
     "profile": [
-      "http://hl7.org/fhir/4.0/StructureDefinition/Questionnaire"
+      "http://hl7.org/fhir/5.0/StructureDefinition/Questionnaire"
     ]
   },
   "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.slade360.co.ke/fhir/StructureMap/ExtractVitalSigns"
+    },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/variable",
       "valueExpression": {
@@ -42,22 +45,19 @@
         "language": "text/fhirpath",
         "expression": "%resource.item.where(linkId='20564-1').answer.value"
       }
-    },
-    {
-      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
-      "valueCanonical": "http://example.org/StructureMap/ExtractPhysicalAssessment"
     }
   ],
+  "url": "https://fhir.slade360.co.ke/fhir/Questionnaire/6c822390-9d87-40da-8eb4-626d8048f8f7",
   "title": "Vitals Signs",
   "status": "active",
   "description": "This form is used to collect vital signs",
   "code": [
-    {
-      "system": "http://loinc.org",
-      "code": "67795-5",
-      "display": "Vital signs, weight, height, head circumference and oximetry panel HITSP"
-    }
-  ],
+                {
+                    "code": "vitals-form",
+                    "display": "Vitals Form",
+                    "system": "https://fhir.slade360.co.ke/fhir/CodeSystem/order-forms"
+                }
+            ],
   "item": [
     {
       "type": "integer",
@@ -79,7 +79,8 @@
           "display": "Body Height"
         }
       ],
-      "text": "Height"
+      "text": "Height",
+      "required": true
     },
     {
       "type": "integer",
@@ -101,10 +102,10 @@
           "display": "Body Weight"
         }
       ],
-      "text": "Weight"
+      "text": "Weight",
+      "required": true
     },
     {
-      "type": "decimal",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -132,28 +133,10 @@
         }
       ],
       "text": "BMI",
-      "readOnly": true,
-      "item": [
-        {
-          "type": "string",
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
-              "valueExpression": {
-                "description": "Classify BMI as underweight, normal, overweight, or obese",
-                "language": "text/fhirpath",
-                "expression": "iif(%heightM.empty() or %weight.empty(), null, iif((%weight / (%heightM.power(2))) < 18.5, 'Underweight', iif((%weight / (%heightM.power(2))) < 25, 'Normal', iif((%weight / (%heightM.power(2))) < 30, 'Overweight', 'Obese'))))"
-              }
-            }
-          ],
-          "linkId": "39156-5_status",
-          "text": "BMI status",
-          "readOnly": true
-        }
-      ]
+      "type": "decimal",
+      "readOnly": true
     },
     {
-      "type": "integer",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -172,10 +155,10 @@
           "display": "Heart rate by Pulse oximetry"
         }
       ],
-      "text": "Pulse Rate"
+      "text": "Pulse Rate",
+      "type": "integer"
     },
     {
-      "type": "group",
       "linkId": "55284-4",
       "code": [
         {
@@ -185,10 +168,10 @@
         }
       ],
       "text": "Blood Pressure(mmHg)",
+      "type": "group",
       "readOnly": true,
       "item": [
         {
-          "type": "integer",
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -207,10 +190,10 @@
               "display": "Systolic blood pressure"
             }
           ],
-          "text": "Systolic Blood Pressure"
+          "text": "Systolic Blood Pressure",
+          "type": "integer"
         },
         {
-          "type": "integer",
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -229,21 +212,31 @@
               "display": "Diastolic blood pressure"
             }
           ],
-          "text": "Diastolic Blood Pressure"
+          "text": "Diastolic Blood Pressure",
+          "type": "integer"
         }
       ]
     },
     {
-      "type": "integer",
-      "linkId": "8310-5",
-      "text": "Temperature (Celsius)",
-      "code": [
+      "item": [
         {
-          "system": "http://loinc.org",
-          "code": "8310-5",
-          "display": "Body Temperature"
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "description": "Classify temperature as low, normal, or high with message",
+                "language": "text/fhirpath",
+                "expression": "iif(%temperature.empty(), null, iif(%temperature < 35, 'Low. Normal range 35.0 to 37.5 °C', iif(%temperature > 37.5, 'High. Normal range 35.0 to 37.5 °C', 'Normal')))"
+              }
+            }
+          ],
+          "linkId": "8310-5_status",
+          "text": "Temperature status",
+          "type": "string",
+          "readOnly": true
         }
       ],
+      "type": "decimal",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -262,36 +255,18 @@
           "valueInteger": 40
         }
       ],
-      "item": [
-        {
-          "type": "string",
-          "linkId": "8310-5_status",
-          "text": "Temperature status",
-          "readOnly": true,
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
-              "valueExpression": {
-                "description": "Classify temperature as low, normal, or high with message, hide if > 40",
-                "language": "text/fhirpath",
-                "expression": "iif(%temperature.empty() or %temperature > 40, null, iif(%temperature < 35, 'Low. Normal range 35.0 to 37.5 °C', iif(%temperature > 37.5, 'High. Normal range 35.0 to 37.5 °C', 'Normal')))"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "integer",
-      "linkId": "20564-1",
-      "text": "Oxygen Saturation",
+      "linkId": "8310-5",
       "code": [
         {
           "system": "http://loinc.org",
-          "code": "20564-1",
-          "display": "Oxygen saturation in Blood"
+          "code": "8310-5",
+          "display": "Body Temperature"
         }
       ],
+      "text": "Temperature (Celsius)",
+      "required": true
+    },
+    {
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -304,33 +279,38 @@
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxValue",
           "valueInteger": 100
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/maxValue",
-          "valueInteger": 100
         }
       ],
+      "linkId": "20564-1",
+      "code": [
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      ],
+      "text": "Oxygen Saturation",
+      "type": "integer",
       "item": [
         {
-          "type": "string",
-          "linkId": "20564-1_status",
-          "text": "Oxygen saturation status",
-          "readOnly": true,
           "extension": [
             {
               "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
               "valueExpression": {
-                "description": "Classify oxygen saturation, hide if > 100",
+                "description": "Classify oxygen saturation",
                 "language": "text/fhirpath",
-                "expression": "iif(%spo2.empty() or %spo2 > 100, null, iif(%spo2 < 90, 'Low. Expected 95 to 100 %. Recheck probe position and retake measurement.', iif(%spo2 >= 95, 'Normal', 'Borderline')))"
+                "expression": "iif(%spo2.empty(), null, iif(%spo2 < 90, 'Low. Expected 95 to 100 %. Recheck probe position and retake measurement.', iif(%spo2 >= 95, 'Normal', 'Borderline')))"
               }
             }
-          ]
+          ],
+          "linkId": "20564-1_status",
+          "text": "Oxygen saturation status",
+          "type": "string",
+          "readOnly": true
         }
       ]
     },
     {
-      "type": "integer",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -349,10 +329,10 @@
           "display": "Respiratory rate"
         }
       ],
-      "text": "Respiration Rate"
+      "text": "Respiration Rate",
+      "type": "integer"
     },
     {
-      "type": "integer",
       "extension": [
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
@@ -371,7 +351,8 @@
           "display": "Circumference"
         }
       ],
-      "text": "Mid-Upper Arm Circumference"
+      "text": "Mid-Upper Arm Circumference",
+      "type": "integer"
     }
   ]
 }

@@ -1,0 +1,4312 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "8b552701-dad5-4493-a5b0-4f9b8965beea",
+  "meta": {
+    "versionId": "3",
+    "lastUpdated": "2025-11-21T09:22:54.595+00:00",
+    "source": "#XWz3WZPShiw6k1P5",
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/Questionnaire"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap",
+      "valueCanonical": "https://fhir.slade360.co.ke/fhir/StructureMap/GlasgowCommaScaleExtract"
+    }
+  ],
+  "url": "https://nshr.hie.slade360edi.com/fhir/Questionnaire/8b552701-dad5-4493-a5b0-4f9b8965beea",
+  "name": "EMT Physical Assessment",
+  "title": "EMT Physical Assessment",
+  "status": "active",
+  "description": "Emergency department Initial evaluation note",
+  "purpose": "Emergency department Initial evaluation note",
+  "code": [
+    {
+      "system": "http://loinc.org",
+      "code": "78337-3",
+      "display": "Emergency department Initial evaluation note"
+    }
+  ],
+  "item": [
+    {
+      "item": [
+        {
+          "item": [
+            {
+              "linkId": "737181170111",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ],
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "256999487536",
+          "text": "Abrasion",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "939968440009",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "683995905866",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "873523644839",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "182714512463",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "343169784112",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "454193001937",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "829723018430",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "546133686931",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "882979031485",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "118960362534",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "item": [
+            {
+              "linkId": "241870062026",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ],
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "253322872198",
+          "text": "Laceration",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ]
+        },
+        {
+          "item": [
+            {
+              "linkId": "106497923764",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ],
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "288306205363",
+          "text": "Pain",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ]
+        },
+        {
+          "item": [
+            {
+              "linkId": "443651557186",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ],
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "939464905700",
+          "text": "Rigidity",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "929664942473",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "631915502139",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "934484647277",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "950744943052",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "272993140115",
+      "text": "Head",
+      "required": false,
+      "repeats": false,
+      "readOnly": true
+    },
+    {
+      "item": [
+        {
+          "item": [
+            {
+              "linkId": "785815721250",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ],
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "900983642817",
+          "text": "Abrasion",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "451542185942",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "454212370954",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "297726945283",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "831244440805",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "835848662894",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "630899582732",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "361099500875",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "185003170265",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "186964770370",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "760352854473",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "152265001545",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "406546793276",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "674458331063",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "145799099727",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "item": [
+            {
+              "linkId": "941835714082",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ],
+          "type": "choice",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "743137043534",
+          "text": "Pain",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "635646210516",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "391552594423",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "418080836433",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "744311857913",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "579315967666",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "346594286368",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "960964430294",
+      "text": "Neck"
+    },
+    {
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "867566523515",
+          "text": "Abrasion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "129429688545",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "602746151787",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "148201113180",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "561717627227",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "506234306805",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "714049128640",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "165513044739",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "828430140987",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "521004461198",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "428861844049",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "585907450114",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "917727003084",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "722523465934",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "163849834373",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "653570618651",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "246145075717",
+          "text": "Pain",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "801885269026",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "254878593486",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "374754208640",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "698034732728",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "149827470482",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "597552316396",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "884239630605",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "431359560223",
+          "text": "Lung Sounds",
+          "type": "choice",
+          "repeats": false,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "radio-button",
+                        "display": "Radio Button"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "616664257703",
+              "text": "Left",
+              "type": "choice",
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "clear",
+                    "display": "Clear"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "stridor",
+                    "display": "Stridor"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "diminished",
+                    "display": "Diminished"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "wheezes",
+                    "display": "Wheezes"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "rales",
+                    "display": "Rales"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "hr",
+                    "display": "Hyper Resonant"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "rh",
+                    "display": "Rhonchi"
+                  }
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "radio-button",
+                        "display": "Radio Button"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "linkId": "287968429016",
+              "text": "Right",
+              "type": "choice",
+              "readOnly": false,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "code": "clear",
+                    "display": "Clear"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "stridor",
+                    "display": "Stridor"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "diminished",
+                    "display": "Diminished"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "wheezes",
+                    "display": "Wheezes"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "rales",
+                    "display": "Rales"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "hr",
+                    "display": "Hyper Resonant"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "rh",
+                    "display": "Rhonchi"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "346672459815",
+      "text": "Chest"
+    },
+    {
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "536452787181",
+          "text": "Abrasion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "711742952094",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "303768595275",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "617406076341",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "758333471712",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "706057368142",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "855726238813",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "441228380014",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "997410114855",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "396143188647",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "480359214246",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "210395893852",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "662171591563",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "737006632135",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "365367104958",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "373370372071",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "498602188563",
+          "text": "Pain",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "242994364600",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "738228361500",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "366353366020",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "728041252815",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "661335715859",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "317173978579",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "594889813357",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "347277508304",
+      "text": "Back & Spine"
+    },
+    {
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "998527115619",
+          "text": "Abrasion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "950815888479",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "739721517532",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "406704488843",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "905648914434",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "451577872092",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "629560543713",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "596451086962",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "290003649264",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "457910627763",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "416779214384",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "785265784820",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "788211263918",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "674174244386",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "236238870793",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "765896539513",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "898880381274",
+          "text": "Pain",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "753466544535",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "150591391488",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "271413955231",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "454756510437",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "730436107105",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "883865933497",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "680808212007",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "856622499683",
+      "text": "Abdomen"
+    },
+    {
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "716672283240",
+          "text": "Abrasion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "719707327231",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "619424718432",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "875719338911",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "318726001515",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "412347154105",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "541275988942",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "430812605588",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "146124296233",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "844713514498",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "769857375015",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "685124735642",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "275343966657",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "600179085256",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "110262356989",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "812482573687",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "865349930657",
+          "text": "Pain",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "429128005198",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "799081184129",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "850209210255",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "343349662041",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "322126990886",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "660109954111",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "582426876629",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "945766766177",
+      "text": "Pelvis"
+    },
+    {
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "499984020271",
+          "text": "Abrasion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "947179397674",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "924596257341",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "881991167343",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "780716771121",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "657647589055",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "453828788529",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "568797027851",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "452130416298",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "824005422873",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "835244566041",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "604688764159",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "161276458528",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "699015124155",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "248547194415",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "556089031675",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "634357473359",
+          "text": "Pain",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "580550552249",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "979915609929",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "325978480249",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "482986059678",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "610811501016",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "257218645730",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "736993214913",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "819522601442",
+      "text": "Upper Extremities"
+    },
+    {
+      "item": [
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "238491022956",
+          "text": "Abrasion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "920388591658",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "673116636382",
+          "text": "Burn",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "686833447907",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "472699037851",
+          "text": "Contusion",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "843361793314",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "102295488670",
+          "text": "Deformity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "960088616847",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "937328317177",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "569023201219",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "230362828266",
+          "text": "Haemorrhage",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "266770032942",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "209688902544",
+          "text": "Laceration",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "563652854023",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "668460448881",
+          "text": "Fracture",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "800877069226",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "639176852981",
+          "text": "Pain",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "114903883685",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "980752585759",
+          "text": "Rigidity",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "388929337607",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "580791902844",
+          "text": "Swelling",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "833165149302",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "radio-button",
+                    "display": "Radio Button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "466454478748",
+          "text": "Tenderness",
+          "type": "choice",
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "present",
+                "display": "Present"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "not-present",
+                "display": "Not Present"
+              }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "652988765524",
+              "text": "Notes",
+              "type": "text",
+              "required": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "248777758081",
+      "text": "Lower Extremities"
+    }
+  ]
+}
